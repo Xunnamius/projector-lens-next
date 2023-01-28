@@ -1,0 +1,1 @@
+types/next-env.d.ts

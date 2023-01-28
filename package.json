@@ -1,0 +1,365 @@
+{
+  "name": "projector-lens-next",
+  "version": "0.0.0-development",
+  "private": true,
+  "description": "https://dummy.xunn.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Xunnamius/projector-lens-next",
+    "lens": "next"
+  },
+  "license": "MIT",
+  "author": "Xunnamius",
+  "sideEffects": false,
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package": "./package.json",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/esm/index.mjs",
+  "types": "./dist/types/src/index.d.ts",
+  "files": [
+    "/dist",
+    "/LICENSE",
+    "/package.json",
+    "/README.md"
+  ],
+  "expect-env": {
+    "errorMessage": "\nCopy the \".env.example\" file to \".env\" or define the appropriate repository secrets",
+    "rules": [
+      {
+        "name": "^ANALYZE$",
+        "value": "^(true|false)$",
+        "required": false,
+        "errorMessage": "expected ANALYZE to be 'true' or 'false'"
+      },
+      {
+        "name": "^NODE_ENV$",
+        "value": "^(production|development|test|external)$",
+        "required": true,
+        "errorMessage": "expected NODE_ENV to be one of: 'production', 'development', 'test', or 'external'"
+      },
+      {
+        "name": "^MONGODB_URI$",
+        "value": "^.+:\\/\\/[^\\/]+$",
+        "required": true,
+        "errorMessage": "expected MONGODB_URI to be a valid Mongo connect URI (without database name)"
+      },
+      {
+        "name": "^MONGODB_MS_PORT$",
+        "value": "^\\d*$",
+        "required": true,
+        "errorMessage": "expected MONGODB_MS_PORT to be strictly numerical"
+      },
+      {
+        "name": "^MONGODB_SYSTEM_DB$",
+        "value": "^[a-zA-Z0-9_]+$",
+        "required": true,
+        "errorMessage": "expected MONGODB_SYSTEM_DB to be a valid Mongo database name"
+      },
+      {
+        "name": "^DISABLED_API_GROUPS$",
+        "value": "^(([^,]+)(,[^,]+)*)?$",
+        "required": false,
+        "errorMessage": "expected DISABLED_API_GROUPS to be a comma-separated list of strings (no spaces between commas and strings)"
+      },
+      {
+        "name": "^RESULTS_PER_PAGE$",
+        "value": "^\\d+$",
+        "required": true,
+        "errorMessage": "expected RESULTS_PER_PAGE to be strictly numerical"
+      },
+      {
+        "name": "^IGNORE_RATE_LIMITS$",
+        "value": "^(true|false)$",
+        "required": false,
+        "errorMessage": "expected IGNORE_RATE_LIMITS to be 'true' or 'false'"
+      },
+      {
+        "name": "^LOCKOUT_ALL_CLIENTS$",
+        "value": "^(true|false)$",
+        "required": false,
+        "errorMessage": "expected LOCKOUT_ALL_CLIENTS to be 'true' or 'false'"
+      },
+      {
+        "name": "^DISALLOWED_METHODS$",
+        "value": "^(([^,]+)(,[^,]+)*)?$",
+        "required": false,
+        "errorMessage": "expected DISALLOWED_METHODS to be a comma-separated list of strings (no spaces between commas and strings)"
+      },
+      {
+        "name": "^MAX_CONTENT_LENGTH_BYTES$",
+        "value": "^[a-zA-Z0-9]+$",
+        "required": true,
+        "errorMessage": "expected MAX_CONTENT_LENGTH_BYTES to be a valid size designation (e.g. '100kb')"
+      },
+      {
+        "name": "^HYDRATE_DB_ON_STARTUP$",
+        "value": "^(true|false)$",
+        "required": false,
+        "errorMessage": "expected HYDRATE_DB_ON_STARTUP to be 'true' or 'false'"
+      },
+      {
+        "name": "^EXTERNAL_SCRIPTS_MONGODB_URI$",
+        "value": "^.+:\\/\\/[^\\/]+$",
+        "required": false,
+        "errorMessage": "expected EXTERNAL_SCRIPTS_MONGODB_URI to be a valid Mongo connect URI (without database name)"
+      },
+      {
+        "name": "^BAN_HAMMER_WILL_BE_CALLED_EVERY_SECONDS$",
+        "value": "^[0-9]+$",
+        "required": false,
+        "errorMessage": "expected BAN_HAMMER_WILL_BE_CALLED_EVERY_SECONDS to be strictly numerical"
+      },
+      {
+        "name": "^BAN_HAMMER_MAX_REQUESTS_PER_WINDOW$",
+        "value": "^[0-9]+$",
+        "required": false,
+        "errorMessage": "expected BAN_HAMMER_MAX_REQUESTS_PER_WINDOW to be strictly numerical"
+      },
+      {
+        "name": "^BAN_HAMMER_RESOLUTION_WINDOW_SECONDS$",
+        "value": "^[0-9]+$",
+        "required": false,
+        "errorMessage": "expected BAN_HAMMER_RESOLUTION_WINDOW_SECONDS to be strictly numerical"
+      },
+      {
+        "name": "^BAN_HAMMER_DEFAULT_BAN_TIME_MINUTES$",
+        "value": "^[0-9]+$",
+        "required": false,
+        "errorMessage": "expected BAN_HAMMER_DEFAULT_BAN_TIME_MINUTES to be strictly numerical"
+      },
+      {
+        "name": "^BAN_HAMMER_RECIDIVISM_PUNISH_MULTIPLIER$",
+        "value": "^[0-9]+$",
+        "required": false,
+        "errorMessage": "expected BAN_HAMMER_RECIDIVISM_PUNISH_MULTIPLIER to be strictly numerical"
+      },
+      {
+        "name": "^PRUNE_LOGS_MAX_LOGS$",
+        "value": "^[0-9]+$",
+        "required": false,
+        "errorMessage": "expected PRUNE_LOGS_MAX_LOGS to be strictly numerical"
+      }
+    ]
+  },
+  "scripts": {
+    "__test-repeat": "echo 'Repeating test suite [initializing]...'; (i=0; while [ \"$((( i += 1 ) <= 100 ))\" -ne 0 ]; do sleep 0.1 && echo \"\\r\\033[1A\\033[0KRepeating test suite [run $i/100]...\" && JEST_SILENT_REPORTER_SHOW_WARNINGS=true BABEL_ENV=test npx jest --reporters=jest-silent-reporter || exit; done) && echo \"All tests passed! Congrats!\"",
+    "build": "npm run build-next --",
+    "build-changelog": "conventional-changelog --outfile CHANGELOG.md --preset angular --config .changelogrc.js --release-count 0 --skip-unstable && (if [ \"$CHANGELOG_SKIP_TITLE\" != 'true' ]; then { node -e 'console.log(require(\"./.changelogrc.js\").changelogTitle)'; cat CHANGELOG.md; } > CHANGELOG.md.ignore && mv CHANGELOG.md.ignore CHANGELOG.md; fi) && remark -o --use reference-links --use gfm --use frontmatter CHANGELOG.md && prettier --write CHANGELOG.md",
+    "build-docs": "ENTRY=`node -e 'console.log((x => typeof x==\"string\"?x:x.default)(require(\"./package.json\").exports[\".\"]).replace(/\\.\\/dist\\/(.+)\\.[a-zA-Z0-9]+$/, \"./src/$1.ts\"))'` && echo 'Entry file:' \"$ENTRY\" && typedoc --plugin typedoc-plugin-markdown --out docs --readme none $ENTRY && find docs -name '*.md' -exec sed -i -e 's/`__namedParameters`: //g' {} + && find docs -name '*.md' -exec sed -i -E 's/^.\\s*(\\*\\*)?__namedParameters(\\*\\*)?/`\\(destructured\\)/gm' {} + && find docs -name '*.md' -exec sed -i -E 's/^.\\s*\\(destructured\\)\\.([a-zA-Z0-9_?-]+)/`\\({ \\1 }\\)/gm' {} + && find docs -name '*.md' -exec sed -i -e 's/Project: //g' {} + && sed -i -e 1,4d docs/README.md",
+    "build-externals": "NODE_ENV=external webpack --config-name externals",
+    "build-next": "BABEL_ENV=production next build",
+    "build-stats": "NODE_ENV=production webpack --json > bundle-stats.ignore.json",
+    "clean": "rm -rf dist coverage build external-scripts/bin bundle-stats.ignore.json",
+    "dev": "BABEL_ENV=development next -p `npx -q acquire-port`",
+    "format": "sort-package-json && remark -o --use reference-links --use gfm --use frontmatter . && prettier --write .",
+    "lint": "stdbuf -i0 -o0 -e0 tsc --project tsconfig.lint.json; X=$?; stdbuf -i0 -o0 -e0 eslint --parser-options=project:tsconfig.lint.json src; Y=$?; remark --quiet --use gfm --use frontmatter --use lint-final-newline --use lint-no-auto-link-without-protocol --use lint-no-blockquote-without-marker --use lint-ordered-list-marker-style --use lint-hard-break-spaces --use lint-no-duplicate-definitions --use lint-no-heading-content-indent --use lint-no-inline-padding --use lint-no-undefined-references --use lint-no-unused-definitions .; Z=$?; [ $X -eq 0 ] && [ $Y -eq 0 ] && [ $Z -eq 0 ]",
+    "list-tasks": "node -e 'console.log(Object.keys(require(\"./package.json\").scripts).join(\"\\n\"))'",
+    "prepare": "if [ -z \"$CI\" ]; then npx husky install; else echo 'skipped installing husky git hooks'; fi",
+    "start": "BABEL_ENV=production next start",
+    "test": "npm run test-unit --",
+    "test-integration": "BABEL_ENV=test jest $JEST_CLI --testPathIgnorePatterns test/unit-*.test.ts",
+    "test-integration-client": "BABEL_ENV=test jest $JEST_CLI test/integration-client*.test.ts",
+    "test-integration-externals": "BABEL_ENV=test jest $JEST_CLI test/integration-external*.test.ts",
+    "test-repeat": "npm run __test-repeat --silent",
+    "test-unit": "BABEL_ENV=test jest $JEST_CLI --coverage --collectCoverageFrom 'src/**/*.ts' --collectCoverageFrom 'lib/**/*.ts' --collectCoverageFrom 'external-scripts/**/*.ts' --testPathIgnorePatterns test/integration-*.test.ts"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "body-leading-blank": [
+        2,
+        "always"
+      ],
+      "footer-leading-blank": [
+        2,
+        "always"
+      ],
+      "type-enum": [
+        2,
+        "always",
+        [
+          "feat",
+          "fix",
+          "docs",
+          "style",
+          "refactor",
+          "test",
+          "revert",
+          "debug",
+          "build",
+          "chore"
+        ]
+      ]
+    }
+  },
+  "lint-staged": {
+    "*.md": "remark -o --use reference-links --use gfm --use frontmatter",
+    "package.json": "sort-package-json",
+    "*": "prettier --write --ignore-unknown"
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "4.2.9"
+    }
+  },
+  "prettier": {
+    "endOfLine": "lf",
+    "printWidth": 80,
+    "proseWrap": "always",
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "overrides": [
+      {
+        "files": "**/*.@(ts|?(@(c|m))js)?(x)",
+        "options": {
+          "parser": "babel-ts",
+          "printWidth": 90
+        }
+      }
+    ]
+  },
+  "jest": {
+    "moduleDirectories": [
+      ".",
+      "node_modules"
+    ],
+    "moduleNameMapper": {
+      "^universe/(.*)$": "<rootDir>/src/$1",
+      "^multiverse/(.*)$": "<rootDir>/lib/$1",
+      "^testverse/(.*)$": "<rootDir>/test/$1",
+      "^externals/(.*)$": "<rootDir>/external-scripts/$1",
+      "^types/(.*)$": "<rootDir>/types/$1"
+    },
+    "setupFilesAfterEnv": [
+      "./test/setup.ts"
+    ],
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testRunner": "jest-circus/runner",
+    "testTimeout": 60000,
+    "verbose": false
+  },
+  "dependencies": {
+    "@babel/cli": "^7.12.16",
+    "@babel/core": "^7.12.16",
+    "@babel/plugin-proposal-export-default-from": "^7.12.13",
+    "@babel/plugin-proposal-function-bind": "^7.12.13",
+    "@babel/preset-env": "^7.12.16",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.12.16",
+    "@ergodark/next-types": "^1.0.17",
+    "@ergodark/types": "^1.0.16",
+    "@next/bundle-analyzer": "^10.0.6",
+    "@octokit/rest": "^18.2.1",
+    "@types/bytes": "^3.1.0",
+    "@types/confusing-browser-globals": "^1.0.0",
+    "@types/cors": "^2.8.10",
+    "@types/debug": "^4.1.5",
+    "@types/jest": "^26.0.20",
+    "@types/mongodb": "^3.6.7",
+    "@types/node": "^14.14.28",
+    "@types/react": "^17.0.2",
+    "@types/webpack": "^4.41.26",
+    "@types/yargs": "^16.0.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-add-import-extension": "^1.4.4",
+    "babel-plugin-source-map-support": "^2.1.3",
+    "babel-plugin-transform-rename-import": "^2.3.0",
+    "bytes": "^3.1.0",
+    "confusing-browser-globals": "^1.0.10",
+    "cors": "^2.8.5",
+    "debug": "^4.3.1",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^6.0.0",
+    "is-server-side": "^1.0.2",
+    "isomorphic-json-fetch": "^1.0.13",
+    "mongodb": "^3.6.4",
+    "named-app-errors": "^1.0.5",
+    "next": "^10.0.6",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-use": "^17.1.1",
+    "request-ip": "^2.1.3",
+    "source-map-support": "^0.5.19",
+    "swr": "^0.4.2"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.13.14",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
+    "@types/clone-deep": "^4.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
+    "acquire-port": "^0.3.12",
+    "array-range": "^1.0.1",
+    "babel-jest": "^26.6.3",
+    "conventional-changelog-angular": "^5.0.12",
+    "conventional-changelog-cli": "^2.1.1",
+    "escape-string-regexp": "^4.0.0",
+    "eslint": "^7.20.0",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.3",
+    "eslint-plugin-react": "^7.22.0",
+    "husky": "^5.0.9",
+    "jest": "^26.6.3",
+    "jest-circus": "^26.6.3",
+    "jest-extended": "^0.11.5",
+    "jest-silent-reporter": "^0.4.0",
+    "lint-staged": "^10.5.4",
+    "mongodb-memory-server": "^6.9.3",
+    "next-test-api-route-handler": "^1.2.18",
+    "prettier": "^2.2.1",
+    "remark-cli": "^9.0.0",
+    "remark-frontmatter": "^3.0.0",
+    "remark-gfm": "^1.0.0",
+    "remark-lint-final-newline": "^1.0.5",
+    "remark-lint-hard-break-spaces": "^2.0.1",
+    "remark-lint-no-auto-link-without-protocol": "^2.0.1",
+    "remark-lint-no-blockquote-without-marker": "^4.0.0",
+    "remark-lint-no-duplicate-definitions": "^2.0.1",
+    "remark-lint-no-heading-content-indent": "^3.0.0",
+    "remark-lint-no-inline-padding": "^3.0.0",
+    "remark-lint-no-undefined-references": "^3.0.0",
+    "remark-lint-no-unused-definitions": "^2.0.1",
+    "remark-lint-ordered-list-marker-style": "^2.0.1",
+    "remark-reference-links": "^5.0.0",
+    "semantic-release": "https://xunn.at/semantic-release-atam",
+    "semver": "^7.3.4",
+    "simple-git": "^2.35.1",
+    "sort-package-json": "^1.53.1",
+    "spellchecker": "^3.7.1",
+    "text-extensions": "^2.4.0",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
+    "typedoc": "^0.20.25",
+    "typedoc-plugin-markdown": "^3.4.5",
+    "typescript": "^4.1.5",
+    "unique-filename": "^1.1.1",
+    "webpack": "^5.22.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-node-externals": "^2.5.2"
+  },
+  "engines": {
+    "node": ">=12.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
