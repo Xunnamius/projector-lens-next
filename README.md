@@ -1,17 +1,16 @@
-<!-- prettier-ignore-start -->
-
 <!-- badges-start -->
 
 [![Black Lives Matter!][badge-blm]][link-blm]
-[![Maintenance status][badge-maintenance]][link-repo]
-[![codecov][badge-codecov]][link-codecov]
-[![semantic-release][badge-semantic-release]][link-semantic-release]
+[![!!UNMAINTAINED!!][badge-unmaintained]][link-unmaintained]
 
 <!-- badges-end -->
 
-<!-- prettier-ignore-end -->
+# ⛔️ DEPRECATED/UNMAINTAINED
 
-# projector-lens-next
+> [!CAUTION]
+>
+> This project has been superseded (and all of its useful bits subsumed) by
+> the [`xscripts project init --template next`](https://github.com/Xunnamius/xscripts) command.
 
 A Next.js template with GitHub Action workflows, CI/CD publishing and deployment
 automation scripts, and the like.
@@ -31,6 +30,10 @@ information.
 
 [badge-blm]: https://xunn.at/badge-blm 'Join the movement!'
 [link-blm]: https://xunn.at/donate-blm
+[badge-unmaintained]:
+  https://xunn.at/badge-unmaintained
+  'Unfortunately, this project is unmaintained (forks welcome!)'
+[link-unmaintained]: https://xunn.at/link-unmaintained
 [badge-maintenance]:
   https://img.shields.io/maintenance/active/2023
   'Is this package maintained?'
