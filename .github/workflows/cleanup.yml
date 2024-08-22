@@ -37,7 +37,7 @@ jobs:
           fi
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1 # ! We only skip if the tippy top commit says so!
 
@@ -84,7 +84,7 @@ jobs:
       && needs.metadata.outputs.has-release-config == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false

@@ -111,7 +111,7 @@ jobs:
           fi
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1 # ! We only skip if the tippy top commit says so!
 
@@ -258,7 +258,7 @@ jobs:
     if: needs.metadata.outputs.should-skip-ci != 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
@@ -283,7 +283,7 @@ jobs:
     if: needs.metadata.outputs.should-skip-ci != 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
@@ -323,7 +323,7 @@ jobs:
     if: needs.metadata.outputs.should-skip-ci != 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           # ? codecov-action requires access to git history
           fetch-depth: 0
@@ -381,7 +381,7 @@ jobs:
       matrix: ${{ fromJson(needs.metadata.outputs.node-matrix) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
@@ -431,7 +431,7 @@ jobs:
       matrix: ${{ fromJson(needs.metadata.outputs.node-matrix) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
@@ -478,7 +478,7 @@ jobs:
       && needs.metadata.outputs.has-integration-client == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
@@ -526,7 +526,7 @@ jobs:
       matrix: ${{ fromJson(needs.metadata.outputs.webpack-matrix) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
@@ -582,7 +582,7 @@ jobs:
       && needs.metadata.outputs.has-release-config == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
@@ -660,7 +660,7 @@ jobs:
       && (needs.metadata.outputs.has-integration-webpack != 'true' || needs.test-integration-webpack.result == 'success')
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
