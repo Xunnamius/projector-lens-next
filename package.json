@@ -334,7 +334,7 @@
     "remark-lint-hard-break-spaces": "^2.0.1",
     "remark-lint-no-auto-link-without-protocol": "^2.0.1",
     "remark-lint-no-blockquote-without-marker": "^4.0.0",
-    "remark-lint-no-duplicate-definitions": "^2.0.1",
+    "remark-lint-no-duplicate-definitions": "^4.0.0",
     "remark-lint-no-heading-content-indent": "^3.0.0",
     "remark-lint-no-inline-padding": "^3.0.0",
     "remark-lint-no-undefined-references": "^3.0.0",
