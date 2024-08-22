@@ -303,7 +303,7 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/exec": "^5.0.0",
-    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/git": "^10.0.1",
     "@types/clone-deep": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "@typescript-eslint/parser": "^4.15.0",
